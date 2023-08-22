@@ -4,6 +4,9 @@ import '@styles/global.css';
 
 
 export const metadata={
+  icons: {
+    icon: './assets/icons/favicon.ico',
+  },
     title:'Apnaprompt',
     description:'Discover and share AI prompts'
 }
