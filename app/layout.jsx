@@ -7,7 +7,7 @@ export const metadata={
   icons: {
     icon: './assets/icons/favicon.ico',
   },
-    title:'Apnaprompt',
+    title:'WebPrompt',
     description:'Discover and share AI prompts'
 }
 

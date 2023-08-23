@@ -30,7 +30,7 @@ function Form({ type, post,setpost, submitting, setsubmitting, handlesubmit, }) 
           </label>
         <label htmlFor="">
           <span className='font-satoshi font-semibold text-base text-gray-700'>Tags 
-          <span className='font-normal'> (#product, #webdevelepment, #idea)</span>
+          <span className='font-normal'> (e.g. product, webdevelepment, idea)</span>
           </span>
         <input
           value={post.tags}
@@ -38,7 +38,7 @@ function Form({ type, post,setpost, submitting, setsubmitting, handlesubmit, }) 
             ...post,
             tags: e.target.value
           })}
-          placeholder='#tag'
+          placeholder='tag'
           required
           className='form_input'
           ></input>

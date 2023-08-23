@@ -3,8 +3,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react"
+import { useRouter } from "next/navigation";
+
 function Nav() {
     const session= useSession();
+    const router= useRouter()
+    console.log(router);
     const [providers, setproviders] = useState(null);
     const [toggledropdown, settoggledropdown] = useState(false);
 
@@ -16,17 +20,25 @@ function Nav() {
        
     }, [])
 
+    useEffect(() => {
+      if(session.status === 'unauthenticated') {
+        router.push('/');
+      }
+    
+    }, [session.status])
+    
+
     return (
         <nav className="w-full flex justify-between mb-16 mt-3">
             <Link href="/" className="flex gap-2 justify-center">
                 <Image
                     src="/assets/images/logo.svg"
-                    alt="Apnaprompt logo"
+                    alt="WebPrompt logo"
                     width={30}
                     height={30}
                     className="object-contain"
                 />
-                <p className="logo_text mt-1">Apnaprompt</p>
+                <p className="logo_text mt-1">WebPrompt</p>
             </Link>
 
             {/* Desktop Navigation  */}

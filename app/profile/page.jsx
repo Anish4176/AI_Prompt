@@ -3,17 +3,20 @@ import { useState, useEffect } from "react"
 import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import Profile from '@components/Profile'
-
+import Loading from "@components/Loading"
 
 function Myprofile() {
     const router = useRouter();
     const {data:session} = useSession();
     const [posts, setposts] = useState([])
+    const [loading, setloading] = useState(false);
     
     useEffect(() => {
         const fetchallposts = async () => {
+            setloading(true);
             const response = await fetch(`/api/users/${session?.user.id}/posts`);
             const data = await response.json();
+            setloading(false);
             setposts(data);
         }
        if(session?.user.id) fetchallposts();
@@ -39,13 +42,16 @@ function Myprofile() {
       }
     }
     return (
-        <Profile
+      <>
+        {loading && <Loading/>}
+        {!loading && <Profile
             name='My'
             desc="Welcome to your personalized profile page"
             data={posts}
             handleEdit={handleEdit}
             handleDelete={handleDelete}
-            />
+            />}
+            </>
         
     )
 }
